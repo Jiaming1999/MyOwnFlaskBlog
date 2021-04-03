@@ -81,4 +81,37 @@ def after_request(response):
 After completing the api, next question would be how do we actually use it:
 (Following example is shown with javascript file)
 
-How to get 
+How to use the api to operate as we want?
+
+An React.js example:
+```javascript
+//url = http://127.0.0.1:5000/table
+ useEffect(() => {
+    fetch(url, {
+      method: 'GET', //method invovled 
+      headers: {
+        'Content-Type': 'application/json', //think it as default
+      },
+    }).then(response => {
+      if (response.ok) {
+        return response.json()
+      }
+    }).then(data => setData(data))
+      .catch(err => {
+        console.log(err)
+        setData()
+      })
+  }, [url])
+```
+
+The useEffect and async is not the most important thing in this code, it is totally fine if you do not understand it.
+
+The process is firstly sending fetching request to the api server (which by default run on 127.0.0.1:5000 by flask) by sending the request url, metho, and headers.
+
+And you got data from response or error status if anything goes wrong.
+
+Put and post is similar to each other.
+
+
+
+
